@@ -1,4 +1,4 @@
-name: deploy
+name: test
 
 on:
   push:
@@ -12,9 +12,11 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install ZT
       run: curl -s https://install.zerotier.com | sudo bash
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v1
     - name: Join ZT
       env:
         zt_id: ${{ secrets.zt_id }}
-      run: bash -c 'echo hi'
+      run: sudo zerotier-cli join $zt_id
+    - name: Install python dependencies
+      run: pip install rq
+    - name: Start tests
+      run: /home/runner/.local/bin/rq worker --url redis://172.29.8.119:6379/
