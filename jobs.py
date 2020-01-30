@@ -1,4 +1,4 @@
-import dill
+import pickle
 
-def run_dill(d):
-    return dill.loads(d)()
+def run_pickled_func(d):
+    return pickle.loads(d)()
