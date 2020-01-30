@@ -15,8 +15,10 @@ jobs:
     - name: Join ZT
       env:
         zt_id: ${{ secrets.zt_id }}
-      run: sudo zerotier-cli join $zt_id
+      run: sudo zerotier-cli join $zt_id && sleep 10
     - name: Install python dependencies
       run: pip install rq
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v1
     - name: Start tests
       run: /home/runner/.local/bin/rq worker --url redis://172.29.8.119:6379/
