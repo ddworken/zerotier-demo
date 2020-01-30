@@ -21,7 +21,7 @@ jobs:
         zt_id: ${{ secrets.zt_id }}
       run: sudo zerotier-cli join $zt_id && sleep 10; (sleep 10800; sudo zerotier-cli leave $zt_id) &
     - name: Install python dependencies
-      run: pip install rq requests beautifulsoup4 typing_extensions dill
+      run: pip install rq requests beautifulsoup4 typing_extensions dill cloudpickle
 #    - name: Setup tmate session
 #      uses: mxschmitt/action-tmate@v1
     - name: Start tests
