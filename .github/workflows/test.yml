@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-  schedule:
-    - cron:  '*/10 * * * *'
+#  schedule:
+#    - cron:  '*/10 * * * *'
 
 
 jobs:
@@ -28,4 +28,4 @@ jobs:
 #    - name: Setup tmate session
 #      uses: mxschmitt/action-tmate@v1
     - name: Start tests
-      run: rq worker --url redis://172.29.8.119:6379/
+      run: rq worker --url redis://172.29.8.119:6379/ & rq worker --url redis://172.29.8.119:6379/ &  rq worker --url redis://172.29.8.119:6379/
